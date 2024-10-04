@@ -1,0 +1,64 @@
+print(f"{'P':^5} | {'Q':^5} | {'R':^5} | {'S':^5} | {'(P -> Q)':^9} | {'(R -> S)':^9} | {'(P ∨ R)':^9} | {'(Q ∨ S)':^9} | {'((P -> Q) ∧ (R -> S) ∧ (P ∨ R)) ⇒ (Q ∨ S)':^35}")
+print("-" * 122)
+
+# Verifica se a proposição é uma tautologia
+etautologia = True
+
+for a in range(2):
+    for b in range(2):
+        for c in range(2):
+            for d in range(2):
+
+
+                P = "V" if a == 1 else "F"
+                Q = "V" if b == 1 else "F"
+                R = "V" if c == 1 else "F"
+                S = "V" if d == 1 else "F"
+
+                # Calcular P -> Q
+                if P == "V" and Q == "F":
+                    P_implica_Q = "F"
+                else:
+                    P_implica_Q = "V"
+
+                # Calcular R -> S
+                if R == "V" and S == "F":
+                    R_implica_S = "F"
+                else:
+                    R_implica_S = "V"
+
+                # Calcular P ∨ R
+                if P == "V" or R == "V":
+                    P_ou_R = "V"
+                else:
+                    P_ou_R = "F"
+
+                # Calcular Q ∨ S
+                if Q == "V" or S == "V":
+                    Q_ou_S = "V"
+                else:
+                    Q_ou_S = "F"
+
+                # Calcular a proposição inteira
+                if P_implica_Q == "V" and R_implica_S == "V" and P_ou_R == "V":
+                    esq = "V"
+                else:
+                    esq = "F"
+
+                if esq == "V" and Q_ou_S == "F":
+                    proposicao_final = "F"
+                else:
+                    proposicao_final = "V"
+
+                # Mostrar a linha da tabela
+                print(f"{P:^5} | {Q:^5} | {R:^5} | {S:^5} | {P_implica_Q:^9} | {R_implica_S:^9} | {P_ou_R:^9} | {Q_ou_S:^9} | {proposicao_final:^35}")
+
+                # Verificar se a proposição é uma tautologia
+                if proposicao_final == "F":
+                    etautologia = False
+
+# Exibir se a proposição é uma tautologia ou não
+if etautologia:
+    print("\nA proposição é uma tautologia.")
+else:
+    print("\nA proposição não é uma tautologia.")
